@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"go-study/basic/model"
+)
 
 // 函数外声明全局变量
 var (
@@ -29,5 +32,8 @@ func main() {
 	// fmt.Println("a = ", a, ", sex = ", sex, ", b = ", b)
 
 	fmt.Println("n1 = ", n1, ", n2 = ", n2, "n3 = ", n3, ", n4 = ", n4)
+
+	// 打包
+	fmt.Printf(model.Name) // 包名.函数/变量
 
 }

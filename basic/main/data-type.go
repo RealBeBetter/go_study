@@ -29,7 +29,7 @@ func main() {
 拜仁慕尼黑来自德甲。
 它在今年欧冠八分之一淘汰赛上首回合客场3:0完胜切尔西。
 `
-	fmt.Println("%s\n", s)
+	fmt.Printf("%s\n", s)
 
 	s1 := "abc" +
 		" def" + "hij"

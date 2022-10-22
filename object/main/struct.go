@@ -35,6 +35,16 @@ func main() {
 
 	rectangle := Rectangle{Point{1, 1}, Point{2, 2}}
 	fmt.Println("长方形 rectangle: ", rectangle)
+	fmt.Printf("%p ", &rectangle)
+	fmt.Println(&rectangle.leftUp.x, &rectangle.leftUp.y, &rectangle.rightDown.x, &rectangle.rightDown.y)
+
+	rect1 := &Rect_{leftUp: &Point{1, 1}, rightDown: &Point{3, 3}}
+	fmt.Printf("%p %p\n", rect1.leftUp, rect1.rightDown)
+	fmt.Println(&rect1.leftUp.x, &rect1.leftUp.y, &rect1.rightDown.x, &rect1.rightDown.y)
+}
+
+type Rect_ struct {
+	leftUp, rightDown *Point
 }
 
 type Point struct {

@@ -55,6 +55,9 @@ func main() {
 	num = 8
 	num.test(6)
 	fmt.Println("num: ", num)
+
+	add(int(num))
+	fmt.Println(num)
 }
 
 type PersonStruct struct {
@@ -93,4 +96,8 @@ type integer int
 func (i *integer) test(n int) {
 	// int和integer虽然只是别名关系，但依旧不是同一个类型
 	*i += integer(n)
+}
+
+func add(n int) {
+	n++
 }

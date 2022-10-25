@@ -20,7 +20,7 @@ func test() {
 	defer func() {
 		// 捕获异常
 		err := recover()
-		if err != nil {
+		if err != any(nil) {
 			// 输出异常
 			fmt.Println("err:", err) // err: runtime error: integer divide by zero
 		}
@@ -42,7 +42,7 @@ func testError(name string) (err error) {
 func test2() {
 	err := testError("sss")
 	if err != nil {
-		panic(err) // 终止程序
+		panic(any(err)) // 终止程序
 	}
 	fmt.Println("...")
 }

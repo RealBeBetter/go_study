@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"os"
 )
 
@@ -31,4 +32,12 @@ func main() {
 			fmt.Println("read line error, error = ", err)
 		}
 	}
+
+	// 如果文件太大，需要使用 ioUtil 读取文件
+	bytes, err := ioutil.ReadFile("file/main/test.txt")
+	if err != nil {
+		fmt.Println("io util read file error, error = ", err)
+		return
+	}
+	fmt.Println(string(bytes))
 }

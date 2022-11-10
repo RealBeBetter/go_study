@@ -34,9 +34,14 @@ type ICalculate interface {
 type C struct {
 }
 
+func (c C) add(a int, b int) int {
+	fmt.Println("C...add")
+	return a + b
+}
+
 func (c C) sub(a int, b int) int {
 	fmt.Println("sub method")
-	return a + b
+	return a - b
 }
 
 func (c C) addNone() {
@@ -52,11 +57,6 @@ type D struct {
 
 func (d D) add(a int, b int) int {
 	fmt.Println("D..add")
-	return a + b
-}
-
-func (c C) add(a int, b int) int {
-	fmt.Println("C...add")
 	return a + b
 }
 

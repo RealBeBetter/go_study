@@ -19,7 +19,7 @@ func main() {
 	如果需要使用在同一个包中定义的其他文件中的结构体，需要将项目放到 $GOPATH/src 下
 	*/
 	// 同一个目录下面不能有个多 package main ，此处需要重新定义
-	var serializePerson PersonSerialize
+	var serializePerson PersonSerialization
 
 	// 调用反序列化方法
 	err := json.Unmarshal([]byte(structSerialize), &serializePerson)
@@ -33,7 +33,7 @@ func main() {
 
 // PersonSerialization
 // 如果命名为大写，要想序列化字符串为小写，需要使用 json tag 名称
-//type PersonSerialization struct {
-//	Name string `json:"name"`
-//	Age  int    `json:"age"`
-//}
+type PersonSerialization struct {
+	Name string `json:"name"`
+	Age  int    `json:"age"`
+}

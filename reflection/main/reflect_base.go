@@ -11,8 +11,12 @@ import (
 
 func main() {
 	// 基本数据类型进行反射
-
 	reflectBase(10)
+
+	// 修改基本数据类型的值
+	n := 100
+	reflectValue(&n) // 传入指针
+	fmt.Println(n)   // 10
 }
 
 func reflectBase(n int) {
@@ -31,4 +35,12 @@ func reflectBase(n int) {
 	// 类型断言
 	num := inter.(int)
 	fmt.Println("num =", num)
+}
+
+func reflectValue(n interface{}) {
+	// 这里不要传入空接口的指针
+	rVal := reflect.ValueOf(n)
+	fmt.Printf("rValue = %v, rValue`s type = %T\n", rVal, rVal) // 100, reflect.Value
+
+	rVal.Elem().SetInt(10)
 }

@@ -18,7 +18,7 @@ var (
 func main() {
 	// 管道 channel 为引用类型，必须先初始化才能使用；本质是一个队列，有类型，而且线程安全
 	locker.Lock()
-	go writeDate()
+	go writeData()
 	locker.Unlock()
 	go readData()
 
@@ -32,7 +32,7 @@ func main() {
 }
 
 // 构造读写函数。写函数往数据管道里写入50个数据，并关闭数据管道；
-func writeDate() {
+func writeData() {
 	for i := 0; i < 50; i++ {
 		// 倒序指针符号，表示向管道中插入数据
 		writeChan <- i

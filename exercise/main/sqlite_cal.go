@@ -28,7 +28,8 @@ func CalDeliveryFee(weight float64) float64 {
 	if weight <= startWeight {
 		return startFee
 	} else {
-		return math.Round(CalDeliveryFee(weight-1) + CalDeliveryFee(weight-1)*insuranceRate + 5)
+		fee := CalDeliveryFee(weight - 1)
+		return math.Round(fee + fee*insuranceRate + 5)
 	}
 }
 

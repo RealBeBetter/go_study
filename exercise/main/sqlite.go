@@ -13,8 +13,8 @@ import (
 	"time"
 )
 
-const userCount = 1000
-const orderCount = 1000
+const userCount = 10000
+const orderCount = 100000
 
 func insert(db *sql.DB, id int, uid int, weight float64, createdAt string) int64 {
 	stmt, err := db.Prepare("INSERT INTO tb_order (id, uid, weight, createdAt) values(?, ?, ?, ?)")
@@ -159,23 +159,23 @@ func calUserDeliveryFee(uid int) {
 	checkErr(err)
 	fmt.Println("ready to select order, uid is", uid)
 	orders := selectOrdersByUid(db, uid)
-	fmt.Println("select result is", orders)
+	fmt.Printf("select result is %+v\n", orders)
 	var totalDeliveryFee float64
 	var userId int
 	if orders != nil && len(orders) != 0 {
 		fmt.Println("the count of order is", len(orders))
 		for index, order := range orders {
 			// 计算费用
-			fmt.Println("the ", index+1, "th order is ", order)
+			fmt.Printf("the %dth th order is %+v\n", index+1, order)
 			weight := order.weight
 			user := order.uid
-			fmt.Println("weight is", weight, ",typeof", reflect.TypeOf(weight))
+			fmt.Printf("weight is %f, typeof is %s\n", weight, reflect.TypeOf(weight))
 			fee := CalDeliveryFee(weight)
 			userId = user
 			totalDeliveryFee += fee
 		}
 	}
-	_ = fmt.Sprintf("user %d 的 delivey fee is %f", userId, totalDeliveryFee)
+	fmt.Println("the delivery fee of user", userId, "is", totalDeliveryFee)
 	err = db.Close()
 	if err != nil {
 		fmt.Println("close database connection failed, error is", err)
@@ -203,6 +203,6 @@ type Order struct {
 
 func checkErr(err error) {
 	if err != nil {
-		panic(err)
+		fmt.Println("this operation has error, error is", err)
 	}
 }

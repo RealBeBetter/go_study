@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:sqlite:C:\Users\Real\GoProjects\go_study\exercise\main\data.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="data [2]" uuid="86f6b01c-6acb-4385-9af7-45af54c55d99">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\Real\GoProjects\go_study\data.db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

@@ -136,7 +136,6 @@ func execSql() {
 
 	for i := 1; i <= orderCount; i++ {
 		uid := rand.Intn(userCount) + 1
-		// weight := rand.Intn(100) + 1
 		weight := distribute[rand.Intn(count)]
 		timeStr := time.Now().Format("2006-01-02 15:04:05")
 		order := insertOrder(db, i, uid, float64(weight), timeStr)

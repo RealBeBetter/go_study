@@ -27,8 +27,10 @@ func main() {
 	// 数组的初始化
 	var nums1 [4]int = [4]int{1, 2, 3, 4}
 	var nums2 = [4]int{1, 2, 3, 4}
-	var nums3 = [...]int{1, 2, 3, 4}       // 自行判断长度，中括号里...一个不能少
-	var nums4 = [...]int{1: 3, 0: 4, 2: 5} // 指定索引和值
+	// 自行判断长度，中括号里...一个不能少
+	var nums3 = [...]int{1, 2, 3, 4}
+	// 指定索引和值, 格式 index: number
+	var nums4 = [...]int{1: 3, 0: 4, 2: 5, 5: 8}
 	fmt.Println("数组 nums1 的值为：", nums1)
 	fmt.Println("数组 nums2 的值为：", nums2)
 	fmt.Println("数组 nums3 的值为：", nums3)

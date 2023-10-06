@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"go-study/basic/model"
+	"go-study/basic_syntax/basic/model"
 )
 
 // 函数外声明全局变量

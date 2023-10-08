@@ -35,8 +35,8 @@ func main() {
 	// int转字符串
 	intSize := strconv.Itoa(123)
 	fmt.Printf("%T  \n", intSize)
-	atoi, _ := strconv.Atoi(intSize)
 	// 字符串转int
+	atoi, _ := strconv.Atoi(intSize)
 	fmt.Printf("%T  \n", atoi)
 	// 将int64转字符串
 	formatInt := strconv.FormatInt(int64(123), 10)

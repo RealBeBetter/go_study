@@ -17,6 +17,11 @@ func main() {
 	stringTest1()
 	stringTest2()
 
+	// array test
+	array()
+
+	// slice test
+	slice()
 }
 
 func stringTest1() {
@@ -41,4 +46,22 @@ func stringTest2() {
 	fmt.Println(runeArr[2], string(runeArr[2]))
 	// len(runeArr)： 4
 	fmt.Println("len(runeArr)：", len(runeArr))
+}
+
+func array() {
+	arr := [5]int{1, 2, 3, 4, 5}
+	for i := 0; i < len(arr); i++ {
+		arr[i] += 100
+	}
+	// [101 102 103 104 105]
+	fmt.Println(arr)
+}
+
+func slice() {
+	// 创建一个 长度 为 3 的 slice
+	slice1 := make([]float32, 3)
+	// 创建一个长度为 3, 容量为 5 的 slice
+	slice2 := make([]float32, 3, 5)
+	println(len(slice1), cap(slice1))
+	println(len(slice2), cap(slice2))
 }

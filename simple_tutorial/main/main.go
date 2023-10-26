@@ -91,6 +91,13 @@ func slice() {
 	combination := append(sub1, sub2...)
 	fmt.Println(combination)
 
+	// 测试如果出现容量 < len 长度的情况
+	capacityLessThanLengthSlice := make([]int, 5, 2)
+	// 报错
+	// # command-line-arguments
+	//./main.go:95:45: invalid argument: length and capacity swapped
+	fmt.Println(capacityLessThanLengthSlice)
+
 }
 
 func mapTest() {

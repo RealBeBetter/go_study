@@ -22,6 +22,9 @@ func main() {
 
 	// slice test
 	slice()
+
+	// map test
+	mapTest()
 }
 
 func stringTest1() {
@@ -85,4 +88,21 @@ func slice() {
 	combination := append(sub1, sub2...)
 	fmt.Println(combination)
 
+}
+
+func mapTest() {
+	// 仅声明 map, key = string, value = int
+	m1 := make(map[string]int)
+	// 赋值使用
+	m1["one"] = 1
+	m1["two"] = 2
+	m1["three"] = 3
+	fmt.Println(m1)
+
+	// 声明时初始化
+	m2 := map[string]string{
+		"Sam":   "Male",
+		"Alice": "Female",
+	}
+	fmt.Println(m2)
 }

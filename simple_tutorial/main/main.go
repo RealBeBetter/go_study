@@ -28,6 +28,7 @@ func main() {
 
 	// pointer test
 	pointer()
+	pointerTest()
 }
 
 func stringTest1() {
@@ -92,11 +93,11 @@ func slice() {
 	fmt.Println(combination)
 
 	// 测试如果出现容量 < len 长度的情况
-	capacityLessThanLengthSlice := make([]int, 5, 2)
+	// capacityLessThanLengthSlice := make([]int, 5, 2)
 	// 报错
 	// # command-line-arguments
 	//./main.go:95:45: invalid argument: length and capacity swapped
-	fmt.Println(capacityLessThanLengthSlice)
+	// fmt.Println(capacityLessThanLengthSlice)
 
 }
 
@@ -125,4 +126,23 @@ func pointer() {
 	*p = "Go语言"
 
 	fmt.Println(str)
+}
+
+func add(num int) {
+	num += 1
+}
+
+func realAdd(num *int) {
+	*num += 1
+}
+
+func pointerTest() {
+	// 100，num 没有变化
+	num := 100
+	add(num)
+	fmt.Println(num)
+
+	// 101，指针传递，num 被修改
+	realAdd(&num)
+	fmt.Println(num)
 }

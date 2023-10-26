@@ -64,4 +64,25 @@ func slice() {
 	slice2 := make([]float32, 3, 5)
 	println(len(slice1), cap(slice1))
 	println(len(slice2), cap(slice2))
+
+	// 给切片添加元素，切片容量可以根据需要自动扩展
+	// [0, 0, 0, 1, 2, 3, 4]
+	slice2 = append(slice2, 1, 2, 3, 4)
+	println(len(slice2), cap(slice2))
+
+	// 输出切片元素 [0 0 0 1 2 3 4]
+	fmt.Println(slice2)
+	// 不能输出切片元素 [7/12]0x140000161b0
+	println(slice2)
+	// 这里需要注意内置函数和 fmt 的打印方式的区别
+
+	// 子切片 [start, end)
+	sub1 := slice2[3:]  // [1 2 3 4]
+	sub2 := slice2[:3]  // [0 0 0]
+	sub3 := slice2[1:4] // [0 0 1]
+	fmt.Println(sub3)
+	// 合并切片
+	combination := append(sub1, sub2...)
+	fmt.Println(combination)
+
 }

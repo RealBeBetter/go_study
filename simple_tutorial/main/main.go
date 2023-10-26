@@ -25,6 +25,9 @@ func main() {
 
 	// map test
 	mapTest()
+
+	// pointer test
+	pointer()
 }
 
 func stringTest1() {
@@ -105,4 +108,14 @@ func mapTest() {
 		"Alice": "Female",
 	}
 	fmt.Println(m2)
+}
+
+func pointer() {
+	str := "Golang"
+	// p 是指向 str 的指针
+	var p *string = &str
+	// 修改了 p, str 的值也发生了改变
+	*p = "Go语言"
+
+	fmt.Println(str)
 }

@@ -80,7 +80,8 @@ func processControlFor() {
 	// array for-loop
 	nums := []int{10, 20, 30, 40, 50}
 	for index, num := range nums {
-		fmt.Println("current index, number: ", index, num)
+		// fmt.Println 在输出的时候，引号和之后的元素中间会自动加上空格
+		fmt.Println("current index:", index, "number:", num)
 	}
 
 	mapFor := map[string]string{
@@ -88,8 +89,10 @@ func processControlFor() {
 		"key2": "value2",
 		"key3": "value3",
 	}
+
+	// 输出顺序和定义顺序并不完全一样
 	for key, value := range mapFor {
-		fmt.Println("current key, value: ", key, value)
+		fmt.Println("current key:", key, "value:", value)
 	}
 
 }

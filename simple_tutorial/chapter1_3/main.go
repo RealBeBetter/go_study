@@ -14,19 +14,24 @@ func main() {
 	fmt.Printf("Καλημέρα κόσμε; or こんにちは 世界\n")
 
 	// string test
+	fmt.Println("-----------string test-------------")
 	stringTest1()
 	stringTest2()
 
 	// array test
+	fmt.Println("-----------array test-------------")
 	array()
 
 	// slice test
+	fmt.Println("-----------slice test-------------")
 	slice()
 
 	// map test
+	fmt.Println("-----------map test-------------")
 	mapTest()
 
 	// pointer test
+	fmt.Println("-----------pointer test-------------")
 	pointer()
 	pointerTest()
 }

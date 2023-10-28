@@ -29,6 +29,24 @@ func main() {
 	println(person2.getName())
 
 	// struct need implement all interface methods, or else will throw error
+
+	fmt.Println("-----------interface test-----------")
+	var _ Person = (*Student)(nil)
+	fmt.Println("you can use this way to check whether struct implement interface")
+	var _ Person = (*Teacher)(nil)
+	// you can use this way to check whether struct implement interface
+
+	fmt.Println("-----------interface test-----------")
+	// interface type convert to struct type
+	stu := person.(*Student)
+	println(stu.name)
+	// this will cause
+	// panic: interface conversion: main.Person is *main.Student, not *main.Teacher
+	// teacherConvert := person.(*Teacher)
+	// println(teacherConvert.name)
+
+	fmt.Println("-----------interface test-----------")
+	emptyInterface()
 }
 
 type Person interface {
@@ -56,4 +74,17 @@ type Teacher struct {
 
 func (teacher *Teacher) getName() string {
 	return teacher.name
+}
+
+func emptyInterface() {
+	// key = string, value = any type
+	m := make(map[string]interface{})
+
+	// 一定程度上，interface{} 类型可以代替 Java 中的 Object 类型
+	m["name"] = "Real"
+	m["age"] = 18
+	m["course"] = []string{"Math", "English"}
+	m["score"] = map[string]int{"Math": 100, "English": 90}
+
+	fmt.Println(m)
 }

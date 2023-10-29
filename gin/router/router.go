@@ -27,7 +27,13 @@ func main() {
 	// routerWithQueryAndPostForm()
 
 	fmt.Println("------------- routerWithRouter --------------")
-	routerWithMap()
+	// routerWithMap()
+
+	fmt.Println("------------- routerWithRouter --------------")
+	// routerWithRedirect()
+
+	fmt.Println("------------- routerWithRouter --------------")
+	routerWithRedirectSelf()
 }
 
 func routerWithoutParameter() {
@@ -112,6 +118,29 @@ func routerWithMap() {
 			"ids":   ids,
 			"names": names,
 		})
+	})
+
+	_ = engine.Run(":9999")
+}
+
+func routerWithRedirect() {
+	engine := gin.Default()
+	engine.GET("/redirectBaidu", func(context *gin.Context) {
+		context.Redirect(http.StatusMovedPermanently, "https://www.baidu.com")
+	})
+
+	_ = engine.Run(":9999")
+}
+
+func routerWithRedirectSelf() {
+	engine := gin.Default()
+	engine.GET("/redirect", func(context *gin.Context) {
+		context.Redirect(http.StatusMovedPermanently, "/index")
+	})
+
+	engine.GET("/index", func(context *gin.Context) {
+		context.Request.URL.Path = "/"
+		context.String(http.StatusOK, "index")
 	})
 
 	_ = engine.Run(":9999")

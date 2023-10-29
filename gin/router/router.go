@@ -1,6 +1,6 @@
 /**
  * @author Real
- * @since 2023/10/29 12:24
+ * @since 2023/10/29 13:20
  */
 package main
 
@@ -12,7 +12,10 @@ import (
 
 func main() {
 	fmt.Println("------------- routerWithRouter --------------")
-	routerWithoutParameter()
+	// routerWithoutParameter()
+
+	fmt.Println("------------- routerWithRouter --------------")
+	routerWithPathParameter()
 }
 
 func routerWithoutParameter() {
@@ -27,5 +30,15 @@ func routerWithoutParameter() {
 		context.String(http.StatusOK, "hello world!")
 	})
 
-	engine.Run()
+	_ = engine.Run()
+}
+
+func routerWithPathParameter() {
+	engine := gin.Default()
+	engine.GET("/hello/:name", func(context *gin.Context) {
+		name := context.Param("name")
+		context.String(200, "hello %s", name)
+	})
+
+	_ = engine.Run()
 }

@@ -24,7 +24,10 @@ func main() {
 	// routerWithPostForm()
 
 	fmt.Println("------------- routerWithRouter --------------")
-	routerWithQueryAndPostForm()
+	// routerWithQueryAndPostForm()
+
+	fmt.Println("------------- routerWithRouter --------------")
+	routerWithMap()
 }
 
 func routerWithoutParameter() {
@@ -93,6 +96,21 @@ func routerWithQueryAndPostForm() {
 			"pageSize": pageSize,
 			"username": username,
 			"password": password,
+		})
+	})
+
+	_ = engine.Run(":9999")
+}
+
+func routerWithMap() {
+	engine := gin.Default()
+	engine.POST("/map", func(context *gin.Context) {
+		ids := context.QueryMap("ids")
+		names := context.PostFormMap("names")
+
+		context.JSON(http.StatusOK, gin.H{
+			"ids":   ids,
+			"names": names,
 		})
 	})
 

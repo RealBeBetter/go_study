@@ -15,7 +15,13 @@ func main() {
 	// routerWithoutParameter()
 
 	fmt.Println("------------- routerWithRouter --------------")
-	routerWithPathParameter()
+	// routerWithPathParameter()
+
+	fmt.Println("------------- routerWithRouter --------------")
+	// routerWithQuery()
+
+	fmt.Println("------------- routerWithRouter --------------")
+	routerWithPostForm()
 }
 
 func routerWithoutParameter() {
@@ -35,9 +41,37 @@ func routerWithoutParameter() {
 
 func routerWithPathParameter() {
 	engine := gin.Default()
+	// func 程序中的函数没有名称，称为匿名函数
 	engine.GET("/hello/:name", func(context *gin.Context) {
 		name := context.Param("name")
 		context.String(200, "hello %s", name)
+	})
+
+	_ = engine.Run()
+}
+
+// 匹配users?name=xxx&role=xxx，role可选
+func routerWithQuery() {
+	engine := gin.Default()
+	engine.GET("/hello", func(context *gin.Context) {
+		name := context.Query("name")
+		role := context.Query("role")
+		context.String(200, "%s is a %s", name, role)
+	})
+
+	_ = engine.Run()
+}
+
+func routerWithPostForm() {
+	engine := gin.Default()
+	engine.POST("/login", func(context *gin.Context) {
+		username := context.PostForm("username")
+		// 优先以 postForm 的值为准，如果没有则使用默认值
+		password := context.DefaultPostForm("password", "000000")
+		context.JSON(200, gin.H{
+			"username": username,
+			"password": password,
+		})
 	})
 
 	_ = engine.Run()

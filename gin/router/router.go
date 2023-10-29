@@ -21,7 +21,10 @@ func main() {
 	// routerWithQuery()
 
 	fmt.Println("------------- routerWithRouter --------------")
-	routerWithPostForm()
+	// routerWithPostForm()
+
+	fmt.Println("------------- routerWithRouter --------------")
+	routerWithQueryAndPostForm()
 }
 
 func routerWithoutParameter() {
@@ -75,4 +78,23 @@ func routerWithPostForm() {
 	})
 
 	_ = engine.Run()
+}
+
+func routerWithQueryAndPostForm() {
+	engine := gin.Default()
+	engine.POST("/pages", func(context *gin.Context) {
+		pageNum := context.Query("pageNum")
+		pageSize := context.DefaultQuery("pageSize", "10")
+		username := context.PostForm("username")
+		password := context.DefaultPostForm("password", "000000")
+
+		context.JSON(http.StatusOK, gin.H{
+			"pageNum":  pageNum,
+			"pageSize": pageSize,
+			"username": username,
+			"password": password,
+		})
+	})
+
+	_ = engine.Run(":9999")
 }

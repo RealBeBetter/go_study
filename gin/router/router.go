@@ -33,7 +33,10 @@ func main() {
 	// routerWithRedirect()
 
 	fmt.Println("------------- routerWithRouter --------------")
-	routerWithRedirectSelf()
+	// routerWithRedirectSelf()
+
+	fmt.Println("------------- routerWithRouter --------------")
+	routerWithGroup()
 }
 
 func routerWithoutParameter() {
@@ -142,6 +145,30 @@ func routerWithRedirectSelf() {
 		context.Request.URL.Path = "/"
 		context.String(http.StatusOK, "index")
 	})
+
+	_ = engine.Run(":9999")
+}
+
+// 分组路由，一般用于相同前缀的路径分组
+func routerWithGroup() {
+	defaultHandler := func(context *gin.Context) {
+		context.JSON(http.StatusOK, gin.H{
+			"path": context.FullPath(),
+		})
+	}
+
+	engine := gin.Default()
+	v1Group := engine.Group("/api/v1")
+	{
+		v1Group.GET("/hello", defaultHandler)
+		v1Group.GET("/greet", defaultHandler)
+	}
+
+	v2Group := engine.Group("/api/v2")
+	{
+		v2Group.GET("/hello", defaultHandler)
+		v2Group.GET("/greet", defaultHandler)
+	}
 
 	_ = engine.Run(":9999")
 }

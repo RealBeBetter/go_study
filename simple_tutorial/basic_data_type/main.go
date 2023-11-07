@@ -101,7 +101,7 @@ func slice() {
 	// capacityLessThanLengthSlice := make([]int, 5, 2)
 	// 报错
 	// # command-line-arguments
-	//./main.go:95:45: invalid argument: length and capacity swapped
+	//./http_base.go:95:45: invalid argument: length and capacity swapped
 	// fmt.Println(capacityLessThanLengthSlice)
 
 }

@@ -34,6 +34,8 @@ func main() {
 	fmt.Println("-----------pointer test-------------")
 	pointer()
 	pointerTest()
+	numberPointer()
+	pointerTestAssignment()
 }
 
 func stringTest1() {
@@ -150,4 +152,22 @@ func pointerTest() {
 	// 101，指针传递，num 被修改
 	realAdd(&num)
 	fmt.Println(num)
+}
+
+func numberPointer() {
+	num := 100
+	var numPointer *int = &num
+	numberPointValue := *numPointer
+
+	fmt.Printf("numberPointValue: %d, num == numberPointValue: %t\n", numberPointValue, num == numberPointValue)
+	fmt.Printf("num: %d, numberPointer: %p, numberPointer value: %d\n", num, numPointer, *numPointer)
+}
+
+func pointerTestAssignment() {
+	var i1 = 5
+	fmt.Printf("An integer: %d, its location in memory: %p\n", i1, &i1)
+
+	var intP *int
+	intP = &i1
+	fmt.Printf("The value at memory location %p is %d\n", intP, *intP)
 }

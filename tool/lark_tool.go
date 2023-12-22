@@ -14,7 +14,7 @@ import (
 
 var log = log2.Default()
 
-var pattern = regexp.MustCompile("(https?://[^#]*)#.*?(\\))")
+var pattern = regexp.MustCompile(`(https?://[^#]*)#.*?(\))`)
 
 func main() {
 	traverseDirectory("/Users/anker/Downloads/markdown/", ".md")
@@ -32,7 +32,7 @@ func replaceTextInFile(filePath string) {
 	contentStr = strings.ReplaceAll(contentStr, "<br />", "\n\n")
 	contentStr = removeHashFromLinks(contentStr)
 
-	err = ioutil.WriteFile(filePath, []byte(contentStr), 0644)
+	err = ioutil.WriteFile(filePath, []byte(contentStr), 0600)
 	if err != nil {
 		log.Printf("Error writing to file %s: %v", filePath, err)
 	}
@@ -60,11 +60,9 @@ func traverseDirectory(path, fileExtension string) {
 		filePath := filepath.Join(path, file.Name())
 		if file.IsDir() {
 			traverseDirectory(filePath, fileExtension)
-		} else {
-			if strings.HasSuffix(file.Name(), fileExtension) {
-				log.Printf("File: %s", file.Name())
-				replaceTextInFile(filePath)
-			}
+		} else if strings.HasSuffix(file.Name(), fileExtension) {
+			log.Printf("File: %s", file.Name())
+			replaceTextInFile(filePath)
 		}
 	}
 }

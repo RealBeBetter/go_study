@@ -4,12 +4,10 @@
  */
 package main
 
-//
 // longestConsecutive
 //  @Description: https://leetcode.cn/problems/longest-consecutive-sequence
 //  @param nums
 //  @return int
-//
 func longestConsecutive(nums []int) int {
 	numSet := make(map[int]bool)
 	for _, num := range nums {

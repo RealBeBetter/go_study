@@ -1,4 +1,4 @@
-package main
+package cache
 
 import (
 	"container/list"
@@ -70,16 +70,3 @@ func (cache *LRUCache) Put(key int, value int) {
  * param_1 := obj.Get(key);
  * obj.Put(key,value);
  */
-
-func main() {
-	lruCache := Constructor(2)
-	lruCache.Put(1, 1)
-	lruCache.Put(2, 2)
-	println(lruCache.Get(1))
-	lruCache.Put(3, 3)
-	println(lruCache.Get(2))
-	lruCache.Put(4, 4)
-	println(lruCache.Get(1))
-	println(lruCache.Get(3))
-	println(lruCache.Get(4))
-}

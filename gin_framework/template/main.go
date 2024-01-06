@@ -22,7 +22,7 @@ func main() {
 
 func htmlTemplate() {
 	engine := gin.Default()
-	engine.LoadHTMLGlob("/Users/*/GolandProjects/go_study/gin/template/templates/*")
+	engine.LoadHTMLGlob("/Users/*/GolandProjects/go_study/gin_framework/template/templates/*")
 
 	stu1 := &student{Name: "Real", Age: 18}
 	stu2 := &student{Name: "Alice", Age: 18}

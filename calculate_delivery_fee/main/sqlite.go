@@ -8,6 +8,7 @@ import (
 	"database/sql"
 	"fmt"
 	_ "github.com/mattn/go-sqlite3"
+	"log"
 	"math/rand"
 	"reflect"
 	"time"
@@ -59,7 +60,7 @@ func selectOrder(db *sql.DB, order *Order) {
 	checkErr(err)
 
 	for rows.Next() {
-		err = rows.Scan(&order.id, &order.uid, &order.weight, &order.createdAt)
+		err = rows.Scan(&order.Id, &order.Uid, &order.Weight, &order.CreatedAt)
 		checkErr(err)
 	}
 
@@ -78,7 +79,7 @@ func selectOrdersByUid(db *sql.DB, uid int) []Order {
 	count := 0
 	var order Order
 	for rows.Next() {
-		err = rows.Scan(&order.id, &order.uid, &order.weight, &order.createdAt)
+		err = rows.Scan(&order.Id, &order.Uid, &order.Weight, &order.CreatedAt)
 		fmt.Println("select order success, order is", order)
 		checkErr(err)
 		orders = append(orders, order)
@@ -141,9 +142,6 @@ func execSql() {
 		order := insertOrder(db, i, uid, float64(weight), timeStr)
 		fmt.Println("order is", order)
 	}
-
-	db.Close()
-
 }
 
 func calUserDeliveryFee(uid int) {
@@ -166,8 +164,8 @@ func calUserDeliveryFee(uid int) {
 		for index, order := range orders {
 			// 计算费用
 			fmt.Printf("the %dth th order is %+v\n", index+1, order)
-			weight := order.weight
-			user := order.uid
+			weight := order.Weight
+			user := order.Uid
 			fmt.Printf("weight is %f, typeof is %s\n", weight, reflect.TypeOf(weight))
 			fee := CalDeliveryFee(weight)
 			userId = user
@@ -194,14 +192,14 @@ CREATE INDEX id_idx ON tb_order (id);
 `
 
 type Order struct {
-	id        int       `json:"id"`
-	uid       int       `json:"uid"`
-	weight    float64   `json:"weight"`
-	createdAt time.Time `json:"created_at"`
+	Id        int       `json:"id"`
+	Uid       int       `json:"uid"`
+	Weight    float64   `json:"weight"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 func checkErr(err error) {
 	if err != nil {
-		fmt.Println("this operation has error, error is", err)
+		log.Printf("this operation has error, error is %v\n", err)
 	}
 }

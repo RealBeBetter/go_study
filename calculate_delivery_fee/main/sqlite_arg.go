@@ -5,7 +5,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"os"
 	"strconv"
 )
@@ -17,7 +17,7 @@ func main() {
 		if index == 0 {
 			continue
 		}
-		fmt.Println("第", index, "个用户 id 是 ", arg)
+		log.Printf("第 %d 个用户 id 是 %s\n", index, arg)
 		uid, err := strconv.Atoi(arg)
 		checkErr(err)
 		calUserDeliveryFee(uid)

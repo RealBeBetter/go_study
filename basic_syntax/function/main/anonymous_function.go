@@ -6,7 +6,7 @@ import (
 
 // 匿名对象设置为全局变量
 var (
-	fun1 = func(n1 int, n2 int) int {
+	anonymousFunction = func(n1 int, n2 int) int {
 		return n1 * n2
 	}
 )
@@ -32,5 +32,5 @@ func main() {
 	n1, n2 = a(n1, n2)
 
 	// 调用全局匿名函数
-	fmt.Println(fun1(42, 44))
+	fmt.Println(anonymousFunction(42, 44))
 }

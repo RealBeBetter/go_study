@@ -15,7 +15,7 @@ import (
 func main() {
 	certPool := x509.NewCertPool()
 
-	certBytes, err := ioutil.ReadFile("C:\\Users\\Real\\GoProjects\\go_study\\go_rpc\\tls\\server\\server.crt")
+	certBytes, err := ioutil.ReadFile("C:\\Users\\Real\\GoProjects\\go_study\\golang_rpc\\tls\\server\\server.crt")
 	if err != nil {
 		log.Fatalf("Failed to read server.crt: %v", err)
 	}

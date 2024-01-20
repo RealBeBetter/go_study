@@ -16,9 +16,9 @@ type Result struct {
 type Calc int
 
 // CalcSquare 计算面积
-//  @receiver cal 
-//  @param num 
-//  @return *Result 
+//  @receiver cal
+//  @param num
+//  @return *Result
 func (cal *Calc) CalcSquare(num int) *Result {
 	if num > intsets.MaxInt/2 {
 		panic("error argument: num is too big......")

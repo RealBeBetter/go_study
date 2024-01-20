@@ -16,7 +16,7 @@ func main() {
 
 	cert, _ := tls.LoadX509KeyPair("client.crt", "client.key")
 	certPool := x509.NewCertPool()
-	certBytes, _ := ioutil.ReadFile("C:\\Users\\Real\\GoProjects\\go_study\\go_rpc\\tls\\server\\server.crt")
+	certBytes, _ := ioutil.ReadFile("C:\\Users\\Real\\GoProjects\\go_study\\golang_rpc\\tls\\server\\server.crt")
 	certPool.AppendCertsFromPEM(certBytes)
 	config := &tls.Config{
 		Certificates: []tls.Certificate{cert},

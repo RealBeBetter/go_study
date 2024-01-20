@@ -42,4 +42,4 @@ func main() {
 	}
 }
 
-// Context from Function C:/Users/Real/GoProjects/go_study/go_rpc/server/tls_server.go:main.*Calc.Square
+// Context from Function C:/Users/Real/GoProjects/go_study/golang_rpc/server/tls_server.go:main.*Calc.Square

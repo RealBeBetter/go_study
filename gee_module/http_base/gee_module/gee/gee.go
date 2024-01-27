@@ -1,15 +1,11 @@
 package gee
 
-/**
- * @author wei.song
- * @since 2023/11/7 17:48
- */
 import (
 	"fmt"
 	"net/http"
 )
 
-// HandlerFunc defines the request handler used by gee_module
+// HandlerFunc defines the request handler used by gee
 type HandlerFunc func(http.ResponseWriter, *http.Request)
 
 // Engine implement the interface of ServeHTTP

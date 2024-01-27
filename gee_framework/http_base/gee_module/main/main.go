@@ -1,8 +1,8 @@
 package main
 
 import (
-	"example/gee"
 	"fmt"
+	"gee/gee"
 	"net/http"
 )
 

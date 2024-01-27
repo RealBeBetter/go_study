@@ -22,13 +22,19 @@ type Engine struct{}
 func (e *Engine) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	switch r.URL.Path {
 	case "/":
-		fmt.Fprintf(w, "URL.Path = %q\n", r.URL.Path)
+		if _, err := fmt.Fprintf(w, "URL.Path = %q\n", r.URL.Path); err != nil {
+			return
+		}
 	case "/hello":
 		for k, v := range r.Header {
-			fmt.Fprintf(w, "Header[%q] = %q\n", k, v)
+			if _, err := fmt.Fprintf(w, "Header[%q] = %q\n", k, v); err != nil {
+				return
+			}
 		}
 	default:
-		fmt.Fprintf(w, "404 NOT FOUND: %s\n", r.URL)
+		if _, err := fmt.Fprintf(w, "404 NOT FOUND: %s\n", r.URL); err != nil {
+			return
+		}
 	}
 
 }

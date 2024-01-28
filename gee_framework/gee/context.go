@@ -20,6 +20,7 @@ type Context struct {
 	// 请求信息
 	Path   string
 	Method string
+	Params map[string]string
 
 	// 返回信息
 	StatusCode int
@@ -31,6 +32,7 @@ func NewContext(w http.ResponseWriter, r *http.Request) *Context {
 		Request: r,
 		Path:    r.URL.Path,
 		Method:  r.Method,
+		Params:  make(map[string]string),
 	}
 }
 
@@ -42,6 +44,11 @@ func (c *Context) GetPostFormVal(key string) string {
 
 func (c *Context) GetQueryVal(key string) string {
 	return c.Request.URL.Query().Get(key)
+}
+
+func (c *Context) Param(key string) string {
+	value := c.Params[key]
+	return value
 }
 
 // ---------- 设置返回值 ----------

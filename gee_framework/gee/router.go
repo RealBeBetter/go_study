@@ -26,7 +26,7 @@ func parsePattern(pattern string) []string {
 	patternPaths := strings.Split(pattern, "/")
 
 	parts := make([]string, 0, len(patternPaths))
-	for _, part := range parts {
+	for _, part := range patternPaths {
 		// 路径为空
 		if len(part) == 0 {
 			continue

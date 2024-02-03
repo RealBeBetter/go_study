@@ -9,12 +9,17 @@ type HandlerFunc func(c *Context)
 
 // Engine implement the interface of ServeHTTP
 type Engine struct {
+	*RouterGroup
 	router *Router
+	groups []*RouterGroup
 }
 
 // New is the constructor of gee.Engine
 func New() *Engine {
-	return &Engine{router: NewRouter()}
+	e := &Engine{router: NewRouter()}
+	e.RouterGroup = &RouterGroup{engine: e}
+	e.groups = []*RouterGroup{e.RouterGroup}
+	return e
 }
 
 func (engine *Engine) addRoute(method string, pattern string, handler HandlerFunc) {
@@ -33,7 +38,10 @@ func (engine *Engine) POST(pattern string, handler HandlerFunc) {
 
 // Run defines the method to start a http server
 func (engine *Engine) Run(addr string) (err error) {
-	return http.ListenAndServe(addr, engine)
+	return http.ListenAndServe(
+		addr,
+		engine,
+	)
 }
 
 func (engine *Engine) ServeHTTP(w http.ResponseWriter, req *http.Request) {

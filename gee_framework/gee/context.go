@@ -46,7 +46,7 @@ func (c *Context) GetQueryVal(key string) string {
 	return c.Request.URL.Query().Get(key)
 }
 
-func (c *Context) Param(key string) string {
+func (c *Context) GetParamVal(key string) string {
 	value := c.Params[key]
 	return value
 }

@@ -24,6 +24,10 @@ type Context struct {
 
 	// 返回信息
 	StatusCode int
+
+	// 中间件
+	handlers []HandlerFunc
+	index    int
 }
 
 func NewContext(w http.ResponseWriter, r *http.Request) *Context {
@@ -33,7 +37,22 @@ func NewContext(w http.ResponseWriter, r *http.Request) *Context {
 		Path:    r.URL.Path,
 		Method:  r.Method,
 		Params:  make(map[string]string),
+		index:   -1,
 	}
+}
+
+func (c *Context) Next() {
+	c.index++
+
+	s := len(c.handlers)
+	for ; c.index < s; c.index++ {
+		c.handlers[c.index](c)
+	}
+}
+
+func (c *Context) Fail(code int, err string) {
+	c.index = len(c.handlers)
+	c.JSON(code, H{"message": err})
 }
 
 // ---------- 获取请求值 ----------

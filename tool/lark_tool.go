@@ -15,7 +15,7 @@ import (
 
 var log = log2.Default()
 
-var pattern = regexp.MustCompile(`(https?://[^#]*)#.*?(\))`)
+var pattern = regexp.MustCompile(`(!)(\[).*?(])(\(https?://[^#]*)#.*?(\))`)
 
 func main() {
 	traverseDirectory("/Users/anker/Downloads/markdown/", ".md")
@@ -44,8 +44,8 @@ func replaceTextInFile(filePath string) {
 func removeHashFromLinks(text string) string {
 	result := pattern.ReplaceAllStringFunc(text, func(match string) string {
 		groups := pattern.FindStringSubmatch(match)
-		if len(groups) == 3 {
-			return groups[1] + groups[2]
+		if len(groups) == 6 {
+			return groups[1] + groups[2] + groups[3] + groups[4] + groups[5]
 		}
 		return match
 	})

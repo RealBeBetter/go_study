@@ -28,6 +28,9 @@ type Context struct {
 	// 中间件
 	handlers []HandlerFunc
 	index    int
+
+	// 引擎指针
+	engine *Engine
 }
 
 func NewContext(w http.ResponseWriter, r *http.Request) *Context {
@@ -102,11 +105,12 @@ func (c *Context) JSON(code int, data interface{}) {
 	}
 }
 
-func (c *Context) HTML(code int, html string) {
+func (c *Context) HTML(code int, name string, data interface{}) {
 	c.SetHeader(ContentType, "text/html")
 	c.SetStatusCode(code)
-	if _, err := c.Writer.Write([]byte(html)); err != nil {
+	if err := c.engine.htmlTemplates.ExecuteTemplate(c.Writer, name, data); err != nil {
 		log.Printf("Response HTML Error: %v", err)
+		c.Fail(http.StatusInternalServerError, err.Error())
 	}
 }
 

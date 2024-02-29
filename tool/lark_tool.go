@@ -18,7 +18,6 @@ var log = log2.Default()
 var pattern = regexp.MustCompile(`(!)(\[).*?(])(\(https?://[^#]*)#.*?(\))`)
 
 func main() {
-	traverseDirectory("/Users/anker/Downloads/markdown/", ".md")
 	traverseDirectory("C:\\Users\\Real\\Documents\\yuque\\docs", ".md")
 	// 运行时可以看到输出
 	time.Sleep(1 * time.Second)

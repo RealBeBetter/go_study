@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	// client/main.go
+	// client/simple_goroutine.go
 
 	cert, _ := tls.LoadX509KeyPair("client.crt", "client.key")
 	certPool := x509.NewCertPool()

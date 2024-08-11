@@ -1,6 +1,6 @@
 module go-study
 
-go 1.18
+go 1.22
 
 require (
 	github.com/garyburd/redigo v1.6.4
